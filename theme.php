@@ -1,81 +1,84 @@
 <?php global $Wcms ?>
 
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-    	<meta charset="utf-8">
-    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="<?= $Wcms->getSiteLanguage() ?>">
+	<head>
+		<!-- Encoding, browser compatibility, viewport -->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <meta name="description" content="<?= $Wcms->page('description') ?>">
-        <meta name="keywords" content="<?= $Wcms->page('keywords') ?>">
-    	<meta http-equiv="imagetoolbar" content="no"/>
-    	<meta name="MSSmartTagsPreventParsing" content="false"/>
+		<!-- Search Engine Optimization (SEO) -->
+		<meta name="title" content="<?= $Wcms->get('config', 'siteTitle') ?> - <?= $Wcms->page('title') ?>" />
+		<meta name="description" content="<?= $Wcms->page('description') ?>">
+		<meta name="keywords" content="<?= $Wcms->page('keywords') ?>">
+		<meta property="og:url" content="<?= $this->url() ?>" />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="<?= $Wcms->get('config', 'siteTitle') ?>" />
+		<meta property="og:title" content="<?= $Wcms->page('title') ?>" />
+		<meta name="twitter:site" content="<?= $this->url() ?>" />
+		<meta name="twitter:title" content="<?= $Wcms->get('config', 'siteTitle') ?> - <?= $Wcms->page('title') ?>" />
+		<meta name="twitter:description" content="<?= $Wcms->page('description') ?>" />
 
-        <title><?= $Wcms->get('config', 'siteTitle') ?> - <?= $Wcms->page('title') ?></title>
-    	
-        <!-- Admin CSS -->
-        <?= $Wcms->css() ?>
+		<!-- Website and page title -->
+		<title>
+			<?= $Wcms->get('config', 'siteTitle') ?> - <?= $Wcms->page('title') ?>
 
-        <!-- Theme CSS -->
-        <link rel="stylesheet" href="<?= $Wcms->asset('css/style.css') ?>">
-    </head>
+		</title>
 
-    <body>
-        <?= $Wcms->settings() ?>
-        <?= $Wcms->alerts() ?>
+		<!-- Admin CSS -->
+		<?= $Wcms->css() ?>
+		
+		<!-- Theme CSS -->
+		<link rel="stylesheet" rel="preload" as="style" href="<?= $Wcms->asset('css/style.css') ?>">
+	</head>
+	
+	<body>
+		<!-- Admin settings panel and alerts -->
+		<?= $Wcms->settings() ?>
 
-        <div class="navbar navbar-default" role="navigation">
-    		<div class="container">
-    			<div class="navbar-header">
-    				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-    					<span class="icon-bar"></span>
-    					<span class="icon-bar"></span>
-    					<span class="icon-bar"></span>
-    				</button>
-    				<a class="navbar-brand" href="<?= $Wcms->url() ?>">
-						<img src="<?= $Wcms->asset('img/vjdesign-favicon.png') ?>" class="logo" style="height: 15px"/>
-						<span class="screen-reader-text"><?= $Wcms->get('config', 'siteTitle') ?></span>
-					</a>
-    			</div>
-    			<div class="collapse navbar-collapse" id="navMobile">
-    				<ul class="nav navbar-nav">
-                        <?= $Wcms->menu() ?>
+		<?= $Wcms->alerts() ?>
 
-    				</ul>
-    			</div><!--/.nav-collapse -->
-    		</div>
-    	</div>
+		<section id="topMenu">
+			<div class="inner">
+				<nav>
+					<ul class="menu">
+						<!-- Menu -->
+						<?= $Wcms->menu() ?>
 
-    	<div class="container">
-    		<div class="starter-template">
-    			<div class="row" style="padding-top: 10px;">
-    				<div class="col-xs-12 col-sm-8">
-    					<div class="visible-xs spacer20"></div>
-    					<div>
-                            <?= $Wcms->page('content') ?>
+					</ul>
+				</nav>
+			</div>
+		</section>
 
-    					</div>
-    				</div><!-- /.col-lg-8 -->
-    				<div class="col-xs-12 col-sm-4">
-    					<div class="visible-xs spacer20"></div>
-    					<div class="subsideBackground padding20 rounded5">
-                            <?= $Wcms->block('subside') ?>
+		<div id="wrapper">
+			<section id="intro" class="wrapper style1 fullscreen">
+				<div class="inner">
+					<!-- Main content for each page -->
+					<?= $Wcms->page('content') ?>
 
-    					</div>
-    				</div><!-- /.col-lg-4 -->
-    			</div><!-- /.row -->
-    		</div>
-    	</div><!-- /.container -->
+				</div>
+			</section>
 
-    	<footer class="container-fluid pull-right">
-    		<div class="text-right padding20">
-                <?= $Wcms->footer() ?>
+			<section class="wrapper style2">
+					<div class="inner">
+						<!-- Static editable block, same on each page -->
+						<?= $Wcms->block('subside') ?>
 
-    		</div>
-    	</footer>
+					</div>
+			</section>
+		</div>
 
-    	
-        <?= $Wcms->js() ?>
-    </body>
+		<footer class="wrapper style2">
+			<div class="inner">
+				<!-- Footer -->
+				<?= $Wcms->footer() ?>
+
+			</div>
+		</footer>
+
+		<!-- Admin JavaScript. More JS libraries can be added below -->
+		<?= $Wcms->js() ?>
+
+	</body>
 </html>
