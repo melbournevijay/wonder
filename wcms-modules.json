@@ -1,0 +1,13 @@
+{
+    "version": 1,
+    "themes": {
+        "clean": {
+            "name": "Wonder",
+            "repo": "https://github.com/melbournevijay/wonder/tree/main",
+            "zip": "https://github.com/melbournevijay/wonder/archive/main.zip",
+            "summary": "A breath of fresh air.",
+            "version": "1.0.0",
+            "image": "https://github.com/melbournevijay/wonder/tree/main/preview.jpg"
+        }
+    }
+}
